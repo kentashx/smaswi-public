@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1761484609522,
@@ -24,6 +24,10 @@
                 {
                     "date": 1761484923168,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -678,13 +678,13 @@\n                 <div class=\"feature\">\n                     <div class=\"feature-icon\">📊</div>\n                     <h3>データ分析と可視化</h3>\n                     <ul class=\"feature-list\">\n-                        <li>種目毎のワールドポイントを確認</li>\n-                        <li>体重などの生活要素も管理※開発中</li>\n-                        <li>練習量や体調から傾向を分析※開発中</li>\n+                        <li>種目毎のワールドポイントを確認可能</li>\n+                        <li>レーダーチャートで能力可視化</li>\n+                        <li>練習量を見える化</li>\n                         <li>\n-                            予想タイムを算出する\n+                            練習記録から大会の予測タイムを算出\n                             <br>\n                             AI分析※開発中\n                         </li>\n                     </ul>\n"
+                },
+                {
+                    "date": 1765576801314,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -874,9 +874,9 @@\n         <section id=\"download\" class=\"cta-section\">\n             <h2>今すぐスマスイを始めよう</h2>\n             <p>水泳を速くするための第一歩を、今日から。</p>\n             <div class=\"hero-buttons\">\n-                <a href=\"#\" class=\"button-primary\">App Storeでダウンロード</a>\n+                <a href=\"https://apps.apple.com/us/app/%E3%82%B9%E3%83%9E%E3%82%B9%E3%82%A4/id6756019486\" class=\"button-primary\">App Storeでダウンロード</a>\n                 <a href=\"#\" class=\"button-primary\">Google Playでダウンロード</a>\n             </div>\n         </section>\n         <!-- Footer -->\n"
                 }
             ],
             "date": 1761484609522,
