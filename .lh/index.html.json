@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1761484609522,
@@ -28,6 +28,10 @@
                 {
                     "date": 1765576801314,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -874,9 +874,9 @@\n         <section id=\"download\" class=\"cta-section\">\n             <h2>今すぐスマスイを始めよう</h2>\n             <p>水泳を速くするための第一歩を、今日から。</p>\n             <div class=\"hero-buttons\">\n-                <a href=\"#\" class=\"button-primary\">App Storeでダウンロード</a>\n+                <a href=\"https://apps.apple.com/us/app/%E3%82%B9%E3%83%9E%E3%82%B9%E3%82%A4/id6756019486\" class=\"button-primary\">App Storeでダウンロード</a>\n                 <a href=\"#\" class=\"button-primary\">Google Playでダウンロード</a>\n             </div>\n         </section>\n         <!-- Footer -->\n"
+                },
+                {
+                    "date": 1765588478667,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -874,9 +874,9 @@\n         <section id=\"download\" class=\"cta-section\">\n             <h2>今すぐスマスイを始めよう</h2>\n             <p>水泳を速くするための第一歩を、今日から。</p>\n             <div class=\"hero-buttons\">\n-                <a href=\"https://apps.apple.com/us/app/%E3%82%B9%E3%83%9E%E3%82%B9%E3%82%A4/id6756019486\" class=\"button-primary\">App Storeでダウンロード</a>\n+                <a href=\"https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%82%B9%E3%82%A4/id6756019486\" class=\"button-primary\">App Storeでダウンロード</a>\n                 <a href=\"#\" class=\"button-primary\">Google Playでダウンロード</a>\n             </div>\n         </section>\n         <!-- Footer -->\n"
                 }
             ],
             "date": 1761484609522,
