@@ -143,31 +143,25 @@
 
     <script>
       const params = new URLSearchParams(window.location.search);
-      const teamId = params.get('teamId') || '-';
-      const competitionId = params.get('competitionId') || '-';
-      const action = params.get('action') || '-';
+      const teamId = params.get('teamId') || '';
+      const competitionId = params.get('competitionId') || '';
+      const action = params.get('action') || 'goal';
 
-      document.getElementById('team-id').textContent = teamId;
-      document.getElementById('competition-id').textContent = competitionId;
-      document.getElementById('action').textContent = action;
+      document.getElementById('team-id').textContent = teamId || '-';
+      document.getElementById('competition-id').textContent = competitionId || '-';
+      document.getElementById('action').textContent = action || '-';
+
+      const iosUrl = `jp.smartswim.app://competition?teamId=${encodeURIComponent(teamId)}&competitionId=${encodeURIComponent(competitionId)}&action=${encodeURIComponent(action)}`;
+      const androidUrl =
+        `intent://competition?teamId=${encodeURIComponent(teamId)}&competitionId=${encodeURIComponent(competitionId)}&action=${encodeURIComponent(action)}` +
+        `#Intent;scheme=jp.smartswim.app;package=jp.smartswim.app;end`;
+      const isAndroid = /Android/i.test(navigator.userAgent);
 
       const openApp = document.getElementById('open-app');
-      const scheme = 'jp.smartswim.app';
-      const androidPackage = 'jp.smartswim.app';
-      const query = params.toString();
-      const appUrl = `${scheme}://competition${query ? `?${query}` : ''}`;
-      const intentUrl = `intent://competition${query ? `?${query}` : ''}#Intent;scheme=${scheme};package=${androidPackage};end`;
-      const ua = navigator.userAgent || '';
-      const isAndroid = /Android/i.test(ua);
-      const isIOS = /iPhone|iPad|iPod/i.test(ua);
-
-      if (isAndroid) {
-        openApp.href = intentUrl;
-      } else if (isIOS) {
-        openApp.href = appUrl;
-      } else {
-        openApp.href = appUrl;
-      }
+      openApp.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = isAndroid ? androidUrl : iosUrl;
+      });
     </script>
   </body>
 </html>
