@@ -141,9 +141,10 @@
 
     <script>
       const params = new URLSearchParams(window.location.search);
-      const teamId = params.get('teamId') || '';
+      const teamName = params.get('teamName');
+      const teamId = params.get('teamId');
 
-      document.getElementById('team-id').textContent = teamId || '-';
+      document.getElementById('team-id').textContent = teamName || teamId || '-';
 
       const iosUrl = `jp.smartswim.app://team/join?teamId=${encodeURIComponent(teamId)}`;
       const androidUrl =

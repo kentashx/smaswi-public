@@ -143,13 +143,23 @@
 
     <script>
       const params = new URLSearchParams(window.location.search);
-      const teamId = params.get('teamId') || '';
-      const competitionId = params.get('competitionId') || '';
+      const teamName = params.get('teamName');
+      const teamId = params.get('teamId');
+      const competitionName = params.get('competitionName');
+      const competitionId = params.get('competitionId');
+      const actionLabel = params.get('actionLabel');
       const action = params.get('action') || 'goal';
 
-      document.getElementById('team-id').textContent = teamId || '-';
-      document.getElementById('competition-id').textContent = competitionId || '-';
-      document.getElementById('action').textContent = action || '-';
+      const resolvedActionLabel = actionLabel || (action === 'goal'
+        ? '大会目標'
+        : action === 'result'
+          ? '大会結果'
+          : '-');
+
+      document.getElementById('team-id').textContent = teamName || teamId || '-';
+      document.getElementById('competition-id').textContent =
+        competitionName || competitionId || '-';
+      document.getElementById('action').textContent = resolvedActionLabel;
 
       const iosUrl = `jp.smartswim.app://competition?teamId=${encodeURIComponent(teamId)}&competitionId=${encodeURIComponent(competitionId)}&action=${encodeURIComponent(action)}`;
       const androidUrl =
