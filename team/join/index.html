@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>スマスイ | チーム参加</title>
-    <meta name="description" content="スマスイのチーム参加リンクです。アプリを開くか、ストアからダウンロードしてください。">
-    <link rel="icon" type="image/svg+xml" href="/icon.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>スマスイ | チーム参加</title>
+        <meta name="description" content="スマスイのチーム参加リンクです。アプリを開くか、ストアからダウンロードしてください。">
+        <link rel="icon" type="image/svg+xml" href="/icon.svg">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+        <style>
       * {
         box-sizing: border-box;
         margin: 0;
@@ -119,27 +119,27 @@
         font-size: 0.85rem;
         color: var(--text-light);
       }
-    </style>
-  </head>
-  <body>
-    <main class="card">
-      <div class="logo">スマスイ</div>
-      <h1>チーム参加</h1>
-      <p>このリンクからアプリが起動します。アプリが未インストールの場合はストアからダウンロードしてください。</p>
-
-      <div class="details" id="details">
-        <div><strong>チームID:</strong> <span id="team-id">-</span></div>
-      </div>
-
-      <div class="buttons">
-        <a class="button button-primary" id="open-app" href="#">アプリを開く</a>
-        <a class="button button-secondary" href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%82%B9%E3%82%A4/id6756019486">App Storeでダウンロード</a>
-        <a class="button button-secondary" href="https://play.google.com/store/apps/details?id=jp.smartswim.app">Google Playでダウンロード</a>
-      </div>
-      <div class="note">ヒント: アプリがインストール済みなら通常は自動で起動します。</div>
-    </main>
-
-    <script>
+        </style>
+    </head>
+    <body>
+        <main class="card">
+            <div class="logo">スマスイ</div>
+            <h1>チーム参加</h1>
+            <p>このリンクからアプリが起動します。アプリが未インストールの場合はストアからダウンロードしてください。</p>
+            <div class="details" id="details">
+                <div>
+                    <strong>チーム名:</strong>
+                    <span id="team-id">-</span>
+                </div>
+            </div>
+            <div class="buttons">
+                <a class="button button-primary" id="open-app" href="#">アプリを開く</a>
+                <a class="button button-secondary" href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%82%B9%E3%82%A4/id6756019486">App Storeでダウンロード</a>
+                <a class="button button-secondary" href="https://play.google.com/store/apps/details?id=jp.smartswim.app">Google Playでダウンロード</a>
+            </div>
+            <div class="note">ヒント: アプリがインストール済みなら通常は自動で起動します。</div>
+        </main>
+        <script>
       const params = new URLSearchParams(window.location.search);
       const teamName = params.get('teamName');
       const teamId = params.get('teamId');
@@ -157,6 +157,6 @@
         e.preventDefault();
         window.location.href = isAndroid ? androidUrl : iosUrl;
       });
-    </script>
-  </body>
+        </script>
+    </body>
 </html>
