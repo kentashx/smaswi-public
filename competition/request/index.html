@@ -152,7 +152,22 @@
       document.getElementById('action').textContent = action;
 
       const openApp = document.getElementById('open-app');
-      openApp.href = window.location.href;
+      const scheme = 'jp.smartswim.app';
+      const androidPackage = 'jp.smartswim.app';
+      const query = params.toString();
+      const appUrl = `${scheme}://competition${query ? `?${query}` : ''}`;
+      const intentUrl = `intent://competition${query ? `?${query}` : ''}#Intent;scheme=${scheme};package=${androidPackage};end`;
+      const ua = navigator.userAgent || '';
+      const isAndroid = /Android/i.test(ua);
+      const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+      if (isAndroid) {
+        openApp.href = intentUrl;
+      } else if (isIOS) {
+        openApp.href = appUrl;
+      } else {
+        openApp.href = appUrl;
+      }
     </script>
   </body>
 </html>
