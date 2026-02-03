@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "ZV437H5K5Y.jp.smartswim.app",
+        "paths": [
+          "/competition/request*",
+          "/team*"
+        ]
+      }
+    ]
+  }
+}
