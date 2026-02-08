@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>スマスイをインストール | iPhone / Android</title>
+    <meta
+      name="description"
+      content="スマスイのインストールページです。iPhoneはApp Store、AndroidはGoogle Playからすぐに始められます。"
+    />
+    <meta property="og:title" content="スマスイを今すぐ始める" />
+    <meta
+      property="og:description"
+      content="iPhone / Android それぞれのインストールリンクを用意しています。最短3分でスタート。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://smaswi.com/install/" />
+    <meta property="og:image" content="https://smaswi.com/icon.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="スマスイを今すぐ始める" />
+    <meta
+      name="twitter:description"
+      content="iPhone / Android それぞれのインストールリンクを用意しています。"
+    />
+    <meta name="twitter:image" content="https://smaswi.com/icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Sora:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --ink: #06213b;
+        --muted: #3b556e;
+        --surface: rgba(255, 255, 255, 0.9);
+        --line: rgba(6, 33, 59, 0.12);
+        --ios-start: #0a84ff;
+        --ios-end: #0054d6;
+        --android-start: #1fb15a;
+        --android-end: #0b8d45;
+      }
+
+      body {
+        font-family: "M PLUS Rounded 1c", sans-serif;
+        color: var(--ink);
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 5% 15%, rgba(10, 132, 255, 0.25), transparent 30%),
+          radial-gradient(circle at 95% 85%, rgba(31, 177, 90, 0.18), transparent 30%),
+          linear-gradient(150deg, #eff8ff 0%, #d6eeff 42%, #f6fbff 100%);
+        padding: 28px 16px 52px;
+      }
+
+      .shell {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      .hero {
+        position: relative;
+        background: var(--surface);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 28px;
+        box-shadow: 0 25px 70px rgba(6, 33, 59, 0.14);
+        padding: 24px;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: auto -20% -55% auto;
+        width: 280px;
+        height: 280px;
+        border-radius: 999px;
+        background: linear-gradient(145deg, rgba(10, 132, 255, 0.2), rgba(31, 177, 90, 0.15));
+        filter: blur(3px);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Sora", sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        margin-bottom: 14px;
+      }
+
+      .brand-mark {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        color: white;
+        background: linear-gradient(135deg, var(--ios-start), #13b7c9);
+        box-shadow: 0 8px 18px rgba(10, 132, 255, 0.35);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        border: 1px solid rgba(6, 33, 59, 0.12);
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 700;
+        padding: 6px 12px;
+        margin-bottom: 14px;
+        background: rgba(255, 255, 255, 0.7);
+      }
+
+      h1 {
+        font-size: clamp(1.8rem, 4.8vw, 2.7rem);
+        line-height: 1.35;
+        letter-spacing: 0.01em;
+      }
+
+      .lead {
+        margin-top: 10px;
+        color: var(--muted);
+        line-height: 1.75;
+        font-size: clamp(0.98rem, 2.8vw, 1.08rem);
+        max-width: 55ch;
+      }
+
+      .device-status {
+        margin-top: 14px;
+        font-size: 0.92rem;
+        color: #0a3f73;
+        background: rgba(10, 132, 255, 0.08);
+        border: 1px solid rgba(10, 132, 255, 0.15);
+        border-radius: 12px;
+        padding: 10px 12px;
+        width: fit-content;
+        max-width: 100%;
+      }
+
+      .platform-grid {
+        margin-top: 24px;
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      }
+
+      .platform-card {
+        position: relative;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.86);
+        padding: 18px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .platform-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 28px rgba(6, 33, 59, 0.14);
+      }
+
+      .platform-card.recommended {
+        border-color: rgba(6, 33, 59, 0.28);
+        box-shadow: 0 16px 30px rgba(6, 33, 59, 0.15);
+      }
+
+      .platform-card.recommended::after {
+        content: "この端末におすすめ";
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        font-size: 0.72rem;
+        color: #0c3f70;
+        font-weight: 700;
+        background: rgba(10, 132, 255, 0.12);
+        border: 1px solid rgba(10, 132, 255, 0.2);
+        border-radius: 999px;
+        padding: 5px 9px;
+      }
+
+      .platform-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .platform-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 11px;
+        display: grid;
+        place-items: center;
+        color: white;
+        font-size: 1rem;
+        font-weight: 800;
+      }
+
+      .platform-icon.ios {
+        background: linear-gradient(135deg, var(--ios-start), var(--ios-end));
+      }
+
+      .platform-icon.android {
+        background: linear-gradient(135deg, var(--android-start), var(--android-end));
+      }
+
+      .platform-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      .platform-sub {
+        color: var(--muted);
+        margin-top: 2px;
+        font-size: 0.92rem;
+      }
+
+      .store-link {
+        margin-top: 14px;
+        display: inline-flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        text-decoration: none;
+        color: white;
+        font-weight: 700;
+        padding: 12px 14px;
+        letter-spacing: 0.01em;
+        transition: filter 0.2s ease, transform 0.2s ease;
+      }
+
+      .store-link:hover {
+        filter: brightness(1.03);
+        transform: translateY(-1px);
+      }
+
+      .store-link.ios {
+        background: linear-gradient(135deg, var(--ios-start), var(--ios-end));
+      }
+
+      .store-link.android {
+        background: linear-gradient(135deg, var(--android-start), var(--android-end));
+      }
+
+      .platform-notes {
+        margin-top: 13px;
+        list-style: none;
+        display: grid;
+        gap: 7px;
+      }
+
+      .platform-notes li {
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .platform-notes li::before {
+        content: "✓";
+        color: #108153;
+        margin-right: 8px;
+        font-weight: 700;
+      }
+
+      .steps {
+        margin-top: 18px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        padding: 18px;
+      }
+
+      .steps h2 {
+        font-size: 1.02rem;
+        font-weight: 800;
+      }
+
+      .step-grid {
+        margin-top: 12px;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      }
+
+      .step-item {
+        border-radius: 13px;
+        border: 1px solid rgba(6, 33, 59, 0.12);
+        background: rgba(255, 255, 255, 0.74);
+        padding: 12px;
+      }
+
+      .step-num {
+        font-family: "Sora", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #0a4e96;
+      }
+
+      .step-text {
+        margin-top: 4px;
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 0.9rem;
+      }
+
+      .foot {
+        margin-top: 14px;
+        text-align: center;
+        font-size: 0.82rem;
+        color: #5b738a;
+      }
+
+      .reveal {
+        animation: rise 0.7s ease both;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 14px 12px 32px;
+        }
+
+        .hero {
+          border-radius: 22px;
+          padding: 18px;
+        }
+
+        .platform-card.recommended::after {
+          position: static;
+          display: inline-flex;
+          margin-top: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero reveal">
+        <div class="brand">
+          <div class="brand-mark">S</div>
+          <span>SMASWI</span>
+        </div>
+        <div class="badge">最短3分で始める練習管理</div>
+        <h1>スマスイをインストールして、<br />今日の練習から記録を残そう。</h1>
+        <p class="lead">
+          あなたの端末に合わせて、iPhone / Android
+          それぞれのインストール導線を用意しています。ボタンを押すだけでストアへ移動できます。
+        </p>
+        <p class="device-status" id="device-status">
+          端末を判定中です。お使いのOSに合うストアを上に表示します。
+        </p>
+
+        <div class="platform-grid">
+          <article class="platform-card" id="ios-card">
+            <div class="platform-header">
+              <div class="platform-icon ios">iOS</div>
+              <div>
+                <p class="platform-title">iPhone / iPad</p>
+                <p class="platform-sub">App Store からインストール</p>
+              </div>
+            </div>
+            <a
+              class="store-link ios"
+              href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%82%B9%E3%82%A4/id6756019486"
+            >
+              App Storeでダウンロード
+            </a>
+            <ul class="platform-notes">
+              <li>iOS端末で最適化された表示</li>
+              <li>インストール後すぐに使い始められます</li>
+            </ul>
+          </article>
+
+          <article class="platform-card" id="android-card">
+            <div class="platform-header">
+              <div class="platform-icon android">A</div>
+              <div>
+                <p class="platform-title">Android</p>
+                <p class="platform-sub">Google Play からインストール</p>
+              </div>
+            </div>
+            <a
+              class="store-link android"
+              href="https://play.google.com/store/apps/details?id=jp.smartswim.app"
+            >
+              Google Playでダウンロード
+            </a>
+            <ul class="platform-notes">
+              <li>Android端末に最適化された導線</li>
+              <li>Googleアカウントですぐに導入可能</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="steps reveal" style="animation-delay: 0.14s">
+        <h2>はじめ方</h2>
+        <div class="step-grid">
+          <div class="step-item">
+            <p class="step-num">STEP 1</p>
+            <p class="step-text">上のボタンから、お使いのストアを開きます。</p>
+          </div>
+          <div class="step-item">
+            <p class="step-num">STEP 2</p>
+            <p class="step-text">「インストール」を押して、アプリを端末に追加します。</p>
+          </div>
+          <div class="step-item">
+            <p class="step-num">STEP 3</p>
+            <p class="step-text">アプリを開いて、今日の練習記録から始めましょう。</p>
+          </div>
+        </div>
+      </section>
+
+      <p class="foot">© 2026 SMASWI</p>
+    </main>
+
+    <script>
+      const iosCard = document.getElementById("ios-card");
+      const androidCard = document.getElementById("android-card");
+      const status = document.getElementById("device-status");
+      const ua = navigator.userAgent;
+      const isIOS = /iPhone|iPad|iPod/i.test(ua);
+      const isAndroid = /Android/i.test(ua);
+
+      if (isIOS) {
+        iosCard.classList.add("recommended");
+        iosCard.style.order = -1;
+        status.textContent = "この端末はiPhone / iPadです。App Storeからインストールしてください。";
+      } else if (isAndroid) {
+        androidCard.classList.add("recommended");
+        androidCard.style.order = -1;
+        status.textContent = "この端末はAndroidです。Google Playからインストールしてください。";
+      } else {
+        status.textContent = "PCブラウザから開いています。スマホでは端末に合うストアが上に表示されます。";
+      }
+    </script>
+  </body>
+</html>
