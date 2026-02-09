@@ -1,13 +1,15 @@
 [
   {
     "relation": [
-      "delegate_permission/common.handle_all_urls"
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
     ],
     "target": {
       "namespace": "android_app",
       "package_name": "jp.smartswim.app",
       "sha256_cert_fingerprints": [
-        "AB:33:7D:E6:86:03:69:20:B5:D5:5D:C7:49:5C:95:BF:E3:86:57:3A:4A:73:D0:19:F7:3E:36:A4:50:92:13:31"
+        "AB:33:7D:E6:86:03:69:20:B5:D5:5D:C7:49:5C:95:BF:E3:86:57:3A:4A:73:D0:19:F7:3E:36:A4:50:92:13:31",
+        "75:A5:C8:BF:4B:90:8C:25:72:E7:9B:52:2B:AA:96:B2:6B:CD:25:33:98:6E:8D:7B:CB:B1:F5:B7:78:84:19:BF"
       ]
     }
   }
