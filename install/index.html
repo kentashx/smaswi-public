@@ -1,36 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>スマスイをインストール | iPhone / Android</title>
-    <meta
-      name="description"
-      content="スマスイのインストールページです。iPhoneはApp Store、AndroidはGoogle Playからすぐに始められます。"
-    />
-    <meta property="og:title" content="スマスイを今すぐ始める" />
-    <meta
-      property="og:description"
-      content="iPhone / Android それぞれのインストールリンクを用意しています。最短3分でスタート。"
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://smaswi.com/install/" />
-    <meta property="og:image" content="https://smaswi.com/icon.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="スマスイを今すぐ始める" />
-    <meta
-      name="twitter:description"
-      content="iPhone / Android それぞれのインストールリンクを用意しています。"
-    />
-    <meta name="twitter:image" content="https://smaswi.com/icon.png" />
-    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Sora:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>スマスイをインストール | iPhone / Android</title>
+        <meta name="description" content="スマスイのインストールページです。iPhoneはApp Store、AndroidはGoogle Playからすぐに始められます。">
+        <meta property="og:title" content="スマスイを今すぐ始める">
+        <meta property="og:description" content="iPhone / Android それぞれのインストールリンクを用意しています。最短3分でスタート。">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://smaswi.com/install/">
+        <meta property="og:image" content="https://smaswi.com/icon.png">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="スマスイを今すぐ始める">
+        <meta name="twitter:description" content="iPhone / Android それぞれのインストールリンクを用意しています。">
+        <meta name="twitter:image" content="https://smaswi.com/icon.png">
+        <link rel="icon" type="image/svg+xml" href="/icon.svg">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+        <style>
       * {
         box-sizing: border-box;
         margin: 0;
@@ -172,7 +160,7 @@
       }
 
       .platform-card.recommended::after {
-        content: "この端末におすすめ";
+        content: "この端末ではこちらからインストール";
         position: absolute;
         top: 12px;
         right: 12px;
@@ -347,90 +335,81 @@
           margin-top: 8px;
         }
       }
-    </style>
-  </head>
-  <body>
-    <main class="shell">
-      <section class="hero reveal">
-        <div class="brand">
-          <div class="brand-mark">S</div>
-          <span>SMASWI</span>
-        </div>
-        <div class="badge">最短3分で始める練習管理</div>
-        <h1>スマスイをインストールして、<br />今日の練習から記録を残そう。</h1>
-        <p class="lead">
-          あなたの端末に合わせて、iPhone / Android
+        </style>
+    </head>
+    <body>
+        <main class="shell">
+            <section class="hero reveal">
+                <div class="brand">
+                    <div class="brand-mark">S</div>
+                    <span>SMASWI</span>
+                </div>
+                <div class="badge">最短3分で始める練習管理</div>
+                <h1>スマスイをインストールして、
+                    <br>今日の練習から記録を残そう。
+                </h1>
+                <p class="lead">
+                    あなたの端末に合わせて、iPhone / Android
           それぞれのインストール導線を用意しています。ボタンを押すだけでストアへ移動できます。
-        </p>
-        <p class="device-status" id="device-status">
-          端末を判定中です。お使いのOSに合うストアを上に表示します。
-        </p>
-
-        <div class="platform-grid">
-          <article class="platform-card" id="ios-card">
-            <div class="platform-header">
-              <div class="platform-icon ios">iOS</div>
-              <div>
-                <p class="platform-title">iPhone / iPad</p>
-                <p class="platform-sub">App Store からインストール</p>
-              </div>
-            </div>
-            <a
-              class="store-link ios"
-              href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%82%B9%E3%82%A4/id6756019486"
-            >
-              App Storeでダウンロード
-            </a>
-            <ul class="platform-notes">
-              <li>iOS端末で最適化された表示</li>
-              <li>インストール後すぐに使い始められます</li>
-            </ul>
-          </article>
-
-          <article class="platform-card" id="android-card">
-            <div class="platform-header">
-              <div class="platform-icon android">A</div>
-              <div>
-                <p class="platform-title">Android</p>
-                <p class="platform-sub">Google Play からインストール</p>
-              </div>
-            </div>
-            <a
-              class="store-link android"
-              href="https://play.google.com/store/apps/details?id=jp.smartswim.app"
-            >
-              Google Playでダウンロード
-            </a>
-            <ul class="platform-notes">
-              <li>Android端末に最適化された導線</li>
-              <li>Googleアカウントですぐに導入可能</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section class="steps reveal" style="animation-delay: 0.14s">
-        <h2>はじめ方</h2>
-        <div class="step-grid">
-          <div class="step-item">
-            <p class="step-num">STEP 1</p>
-            <p class="step-text">上のボタンから、お使いのストアを開きます。</p>
-          </div>
-          <div class="step-item">
-            <p class="step-num">STEP 2</p>
-            <p class="step-text">「インストール」を押して、アプリを端末に追加します。</p>
-          </div>
-          <div class="step-item">
-            <p class="step-num">STEP 3</p>
-            <p class="step-text">アプリを開いて、今日の練習記録から始めましょう。</p>
-          </div>
-        </div>
-      </section>
-
-      <p class="foot">© 2026 SMASWI</p>
-    </main>
-
-    <script>
+                </p>
+                <p class="device-status" id="device-status">
+                    端末を判定中です。お使いのOSに合うストアを上に表示します。
+                </p>
+                <div class="platform-grid">
+                    <article class="platform-card" id="ios-card">
+                        <div class="platform-header">
+                            <div class="platform-icon ios">iOS</div>
+                            <div>
+                                <p class="platform-title">iPhone / iPad</p>
+                                <p class="platform-sub">App Store からインストール</p>
+                            </div>
+                        </div>
+                        <a class="store-link ios" href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%82%B9%E3%82%A4/id6756019486">
+                            App Storeでダウンロード
+                        </a>
+                        <ul class="platform-notes">
+                            <li>iOS端末で最適化された表示</li>
+                            <li>インストール後すぐに使い始められます</li>
+                        </ul>
+                    </article>
+                    <article class="platform-card" id="android-card">
+                        <div class="platform-header">
+                            <div class="platform-icon android">A</div>
+                            <div>
+                                <p class="platform-title">Android</p>
+                                <p class="platform-sub">Google Play からインストール</p>
+                            </div>
+                        </div>
+                        <a class="store-link android" href="https://play.google.com/store/apps/details?id=jp.smartswim.app">
+                            Google Playでダウンロード
+                        </a>
+                        <ul class="platform-notes">
+                            <li>Android端末に最適化された導線</li>
+                            <li>Googleアカウントですぐに導入可能</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+            <section class="steps reveal" style="animation-delay: 0.14s">
+                <h2>はじめ方</h2>
+                <div class="step-grid">
+                    <div class="step-item">
+                        <p class="step-num">STEP 1</p>
+                        <p class="step-text">上のボタンから、お使いのストアを開きます。</p>
+                    </div>
+                    <div class="step-item">
+                        <p class="step-num">STEP 2</p>
+                        <p class="step-text">「インストール」を押して、アプリを端末に追加します。</p>
+                    </div>
+                    <div class="step-item">
+                        <p class="step-num">STEP 3</p>
+                        <p class="step-text">アプリを開いて、今日の練習記録から始めましょう。</p>
+                    </div>
+                </div>
+            </section>
+            <p class="foot">© 2026 SMASWI</p>
+        </main>
+        <script>
       const iosCard = document.getElementById("ios-card");
       const androidCard = document.getElementById("android-card");
       const status = document.getElementById("device-status");
@@ -449,6 +428,6 @@
       } else {
         status.textContent = "PCブラウザから開いています。スマホでは端末に合うストアが上に表示されます。";
       }
-    </script>
-  </body>
+        </script>
+    </body>
 </html>
