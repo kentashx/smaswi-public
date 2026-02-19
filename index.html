@@ -3,12 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>スマスイ - 水泳を速くする練習管理アプリ</title>
-        <meta name="description" content="水泳を速くなりたい人のための練習管理アプリ。水泳・筋トレを一元管理し、成長を見える化">
+        <title>スマスイ | 水泳・フィン・筋トレをつなぐ成長管理アプリ</title>
+        <meta name="description" content="スマスイは、練習記録・大会結果・チーム運用・AIコーチまでを統合した競技者向けアプリ。競泳/フィンスイミング/筋トレを一つで管理。">
         <link rel="icon" type="image/svg+xml" href="icon.svg">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
         <style>
         * {
             margin: 0;
@@ -17,603 +17,680 @@
         }
 
         :root {
-            --primary-color: #2563eb; /* ビビッドブルー */
-            --secondary-color: #06b6d4; /* シアン */
-            --accent-color: #f97316; /* オレンジアクセント */
-            --dark-color: #1e3a5f;
-            --light-color: #f0f7ff;
-            --surface-color: rgba(255, 255, 255, 0.88);
-            --text-color: #1e293b;
-            --text-light: #475569;
-            --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
+            --navy: #14345f;
+            --ocean: #1a74ba;
+            --aqua: #22bfdc;
+            --mint: #7ce5f0;
+            --sun: #ff9e45;
+            --bg: #f4faff;
+            --card: #ffffff;
+            --text: #163154;
+            --muted: #557293;
+            --line: rgba(22, 49, 84, 0.14);
+            --container: 1140px;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'M PLUS Rounded 1c', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.7;
-            color: var(--text-color);
+            color: var(--text);
+            background:
+                radial-gradient(circle at 12% 18%, rgba(10, 176, 200, 0.2), transparent 38%),
+                radial-gradient(circle at 88% 4%, rgba(15, 76, 129, 0.22), transparent 32%),
+                linear-gradient(180deg, #ecf7ff 0%, #f7fbff 40%, #f3fbff 100%);
             overflow-x: hidden;
-            background: var(--bg-gradient);
-            background-attachment: fixed;
-            position: relative;
         }
 
-        body::before {
-            content: '';
+        .grain {
             position: fixed;
             inset: 0;
-            background-image:
-                radial-gradient(circle at 25% 25%, rgba(37, 99, 235, 0.06) 0%, transparent 40%),
-                radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
             pointer-events: none;
+            opacity: 0.17;
+            background-image: radial-gradient(rgba(16, 36, 65, 0.16) 0.4px, transparent 0.4px);
+            background-size: 3px 3px;
             z-index: -1;
         }
 
-        /* Header & Navigation */
         header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(240, 247, 255, 0.92);
-            backdrop-filter: blur(16px);
-            box-shadow: 0 12px 40px rgba(30, 58, 95, 0.08);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            background: rgba(244, 250, 255, 0.85);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(15, 76, 129, 0.08);
+        }
+
+        header.scrolled {
+            box-shadow: 0 14px 40px rgba(8, 42, 74, 0.15);
+            background: rgba(244, 250, 255, 0.95);
         }
 
         nav {
-            max-width: 1200px;
+            max-width: var(--container);
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.95rem 1.4rem;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            position: relative;
         }
 
         .logo {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--ocean);
+            text-decoration: none;
             letter-spacing: 0.02em;
-            color: var(--primary-color);
             display: flex;
             align-items: center;
-            gap: 0.35rem;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            gap: 0.4rem;
         }
 
         .nav-links {
-            display: flex;
-            gap: 1.5rem;
             list-style: none;
+            display: flex;
+            gap: 1.4rem;
+            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: color 0.25s ease, transform 0.25s ease;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
         }
 
         .nav-links a:hover {
-            color: var(--secondary-color);
-            transform: translateY(-1px);
+            color: var(--aqua);
         }
 
         .cta-button {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 0.85rem 1.8rem;
-            border-radius: 999px;
             text-decoration: none;
-            font-weight: 700;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: #fff;
+            background: linear-gradient(120deg, #ff9e45, #ff7e42);
+            padding: 0.66rem 1.2rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            box-shadow: 0 10px 20px rgba(255, 126, 66, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 34px rgba(37, 99, 235, 0.35);
-            background: linear-gradient(135deg, #3b82f6, #22d3ee);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(255, 126, 66, 0.35);
         }
 
-        /* Hero Section */
+        .mobile-menu-button {
+            display: none;
+            border: none;
+            background: transparent;
+            color: var(--ocean);
+            font-size: 1.7rem;
+            cursor: pointer;
+        }
+
         .hero {
-            margin-top: 80px;
-            padding: 110px 2rem 100px;
-            background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.25), transparent 35%),
-                radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.15), transparent 40%),
-                linear-gradient(135deg, #2563eb 0%, #1d4ed8 45%, #0891b2 100%);
-            color: white;
-            text-align: center;
+            margin-top: 74px;
+            padding: 92px 1.4rem 84px;
+        }
+
+        .hero-panel {
+            max-width: var(--container);
+            margin: 0 auto;
+            background:
+                linear-gradient(130deg, rgba(255, 255, 255, 0.98), rgba(236, 250, 255, 0.92)),
+                linear-gradient(130deg, #2c86cd, #2ac6de);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            border-radius: 18px;
+            box-shadow: 0 26px 60px rgba(13, 27, 57, 0.18);
+            padding: 3.2rem 2.4rem;
             position: relative;
             overflow: hidden;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.3);
         }
 
-        .hero::after {
+        .hero-panel::before,
+        .hero-panel::after {
             content: '';
             position: absolute;
-            inset: 0;
-            background-image:
-                radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 45%),
-                radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
-            opacity: 0.9;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-panel::before {
+            width: 360px;
+            height: 360px;
+            right: -120px;
+            top: -160px;
+            background: radial-gradient(circle, rgba(10, 176, 200, 0.24), transparent 68%);
+        }
+
+        .hero-panel::after {
+            width: 300px;
+            height: 300px;
+            left: -120px;
+            bottom: -150px;
+            background: radial-gradient(circle, rgba(255, 180, 94, 0.22), transparent 70%);
         }
 
         .hero-content {
-            max-width: 820px;
-            margin: 0 auto;
             position: relative;
             z-index: 1;
         }
 
-        .hero h1 {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 3.4rem;
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.4rem 0.88rem;
+            background: rgba(15, 76, 129, 0.1);
+            color: var(--ocean);
+            border-radius: 10px;
+            font-size: 0.82rem;
             font-weight: 700;
-            margin-bottom: 1.2rem;
             letter-spacing: 0.01em;
-            line-height: 1.25;
-            word-break: break-word;
-            animation: fadeInUp 0.9s ease;
-            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            margin-bottom: 1.15rem;
         }
 
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2.2rem;
-            opacity: 0.92;
-            animation: fadeInUp 0.9s ease 0.15s both;
-            line-height: 1.8;
-            word-break: break-word;
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.15;
+            letter-spacing: 0.01em;
+            margin-bottom: 1rem;
+            color: var(--navy);
+        }
+
+        .hero-copy {
+            max-width: 770px;
+            color: var(--muted);
+            font-size: 1.08rem;
+            margin-bottom: 2rem;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
+            gap: 0.85rem;
             flex-wrap: wrap;
-            animation: fadeInUp 0.9s ease 0.3s both;
+            margin-bottom: 2rem;
         }
 
-        .button-primary, .button-secondary {
-            padding: 1rem 2.4rem;
-            border-radius: 999px;
+        .button-primary,
+        .button-secondary {
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.05rem;
-            transition: all 0.25s ease;
-            display: inline-block;
-            letter-spacing: 0.01em;
+            padding: 0.95rem 1.5rem;
+            font-weight: 800;
+            font-size: 0.95rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 185px;
         }
 
         .button-primary {
-            background: linear-gradient(135deg, #ffffff, #e0f2fe);
-            color: var(--primary-color);
-            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
-            border: 1px solid rgba(37, 99, 235, 0.15);
-            font-weight: 700;
-        }
-
-        .button-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 36px rgba(37, 99, 235, 0.25);
+            color: #fff;
+            background: linear-gradient(120deg, #1c7dc8, #22bfdc);
+            box-shadow: 0 12px 26px rgba(15, 76, 129, 0.26);
         }
 
         .button-secondary {
-            background: rgba(255, 255, 255, 0.12);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(8px);
+            color: var(--ocean);
+            border: 1px solid rgba(15, 76, 129, 0.22);
+            background: #ffffff;
         }
 
+        .button-primary:hover,
         .button-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
             transform: translateY(-2px);
         }
 
-        /* Section Styles */
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.9rem;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid rgba(16, 36, 65, 0.08);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .metric-icon {
+            font-size: 1.1rem;
+            margin-right: 0.35rem;
+        }
+
+        .metric-card .label {
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .metric-card .value {
+            display: block;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.08rem;
+            color: var(--ocean);
+            font-weight: 800;
+            margin-top: 0.15rem;
+        }
+
         section {
-            padding: 90px 2rem;
-            max-width: 1200px;
+            max-width: var(--container);
             margin: 0 auto;
+            padding: 76px 1.4rem;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-kicker {
+            font-family: 'Outfit', sans-serif;
+            color: var(--aqua);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.55rem;
         }
 
         .section-title {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 2.6rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-            letter-spacing: 0.01em;
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.9rem, 4vw, 2.8rem);
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            color: var(--navy);
         }
 
         .section-subtitle {
-            text-align: center;
-            color: var(--text-light);
-            font-size: 1.05rem;
-            margin-bottom: 2.8rem;
-            line-height: 1.7;
-            word-break: break-word;
+            color: var(--muted);
+            max-width: 840px;
+            font-size: 1.03rem;
         }
 
-        /* Problem Section */
-        .problem {
-            background: transparent;
-        }
-
-        .problem-cards {
+        .value-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.6rem;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
         }
 
-        .problem-card {
-            background: var(--surface-color);
-            padding: 1.8rem;
-            border-radius: 20px;
-            box-shadow:
-                0 16px 40px rgba(30, 58, 95, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.35);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(14px);
-        }
-
-        .problem-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 46px rgba(37, 99, 235, 0.15);
-        }
-
-        .problem-icon {
-            font-size: 2.6rem;
-            margin-bottom: 0.9rem;
-        }
-
-        .problem-card h3 {
-            font-size: 1.45rem;
-            margin-bottom: 0.75rem;
-            color: var(--primary-color);
-        }
-
-        .problem-card p {
-            color: var(--text-light);
-            line-height: 1.7;
-            word-break: break-word;
-        }
-
-        /* Features Section */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature {
-            text-align: center;
-            padding: 2rem;
-            border-radius: 20px;
-            transition: all 0.25s ease;
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(37, 99, 235, 0.08);
-            box-shadow: 0 14px 36px rgba(30, 58, 95, 0.1);
-        }
-
-        .feature:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 46px rgba(37, 99, 235, 0.15);
-            background: rgba(255, 255, 255, 0.8);
-        }
-
-        .feature-icon {
-            font-size: 3.4rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .feature h3 {
-            font-size: 1.6rem;
-            margin-bottom: 0.8rem;
-            color: var(--primary-color);
-        }
-
-        .feature-list {
-            text-align: left;
-            list-style: none;
-            padding: 0;
-        }
-
-        .feature-list li {
-            padding: 0.45rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: var(--text-light);
-            line-height: 1.6;
-            word-break: break-word;
-        }
-
-        .feature-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--secondary-color);
-            font-weight: 700;
-        }
-
-        /* Screenshots Section */
-        .screenshots {
-            background: linear-gradient(135deg, #1e3a5f 0%, #1e40af 50%, #0e7490 100%);
-            color: white;
-            text-align: center;
-            padding: 100px 2rem;
-            border-radius: 32px;
-            box-shadow: 0 20px 50px rgba(30, 64, 175, 0.3);
-        }
-
-        .screenshots .section-title {
-            color: white;
-        }
-
-        .screenshots .section-subtitle {
-            color: rgba(255, 255, 255, 0.76);
-        }
-
-        .screenshot-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.8rem;
-            margin-top: 2.4rem;
-        }
-
-        .screenshot-item {
-            background: rgba(255, 255, 255, 0.06);
-            padding: 1.8rem;
-            border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            transition: all 0.25s ease;
-        }
-
-        .screenshot-item:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: var(--secondary-color);
-            transform: translateY(-5px);
-        }
-
-        .screenshot-placeholder {
-            width: 100%;
-            height: 340px;
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(255, 255, 255, 0.15) 100%);
+        .value-card {
+            background: var(--card);
+            border: 1px solid var(--line);
             border-radius: 14px;
-            margin-bottom: 1rem;
-            display: flex;
+            padding: 1.45rem;
+            box-shadow: 0 18px 34px rgba(16, 36, 65, 0.1);
+        }
+
+        .value-card .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.6rem;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.4rem;
+            margin-bottom: 0.7rem;
+            background: linear-gradient(135deg, rgba(10, 176, 200, 0.15), rgba(107, 229, 222, 0.25));
         }
 
-        .screenshot-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.4rem;
+        .value-card h3 {
+            font-size: 1.22rem;
+            margin-bottom: 0.45rem;
+            color: var(--ocean);
         }
 
-        .screenshot-item p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
+        .value-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
         }
 
-        /* Pricing Section */
-        .pricing-cards {
+        .capability-section {
+            background: linear-gradient(180deg, #f7fcff 0%, #eef8ff 100%);
+            border-radius: 16px;
+            box-shadow: 0 18px 38px rgba(15, 76, 129, 0.12);
+            color: var(--text);
+            margin-top: 0.5rem;
+            border: 1px solid rgba(26, 116, 186, 0.12);
+        }
+
+        .capability-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.6rem;
-            margin-top: 2.2rem;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .capability-card {
+            background: #ffffff;
+            border: 1px solid rgba(26, 116, 186, 0.14);
+            border-radius: 12px;
+            padding: 1.35rem;
+        }
+
+        .capability-card h3 {
+            font-size: 1.12rem;
+            margin-bottom: 0.65rem;
+            color: var(--ocean);
+        }
+
+        .capability-card ul {
+            list-style: none;
+        }
+
+        .capability-card li {
+            font-size: 0.93rem;
+            line-height: 1.55;
+            opacity: 1;
+            padding-left: 1rem;
+            position: relative;
+            margin-bottom: 0.35rem;
+            color: var(--muted);
+        }
+
+        .capability-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.65em;
+            width: 0.35rem;
+            height: 0.35rem;
+            border-radius: 50%;
+            background: var(--aqua);
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .flow-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.2rem;
+            border: 1px solid var(--line);
+        }
+
+        .flow-step {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: linear-gradient(120deg, var(--ocean), var(--aqua));
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.7rem;
+        }
+
+        .flow-card h3 {
+            font-size: 1.04rem;
+            color: var(--ocean);
+            margin-bottom: 0.35rem;
+        }
+
+        .flow-card p {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .pricing-card {
-            background: var(--surface-color);
-            border-radius: 20px;
-            padding: 2.2rem;
-            text-align: center;
-            box-shadow: 0 14px 36px rgba(30, 58, 95, 0.1);
-            transition: all 0.25s ease;
-            border: 1px solid rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(12px);
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 48px rgba(37, 99, 235, 0.15);
+            border-radius: 14px;
+            padding: 1.65rem;
+            background: var(--card);
+            border: 1px solid var(--line);
+            box-shadow: 0 18px 36px rgba(16, 36, 65, 0.1);
         }
 
         .pricing-card.featured {
-            border: 1px solid rgba(37, 99, 235, 0.4);
+            background: linear-gradient(160deg, #fff 0%, #ebf9ff 58%, #ddf6f8 100%);
+            border-color: rgba(10, 176, 200, 0.45);
             position: relative;
         }
 
         .pricing-card.featured::before {
-            content: '人気';
+            content: 'おすすめ';
             position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 0.4rem 1.6rem;
+            right: 1rem;
+            top: 1rem;
+            font-size: 0.72rem;
+            background: rgba(16, 36, 65, 0.9);
+            color: #fff;
+            padding: 0.25rem 0.6rem;
             border-radius: 999px;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+            letter-spacing: 0.04em;
         }
 
-        .pricing-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 0.8rem;
-            color: var(--text-color);
-        }
-
-        .price {
-            font-size: 2.6rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin: 0.8rem 0 1rem;
-        }
-
-        .price span {
-            font-size: 1.05rem;
-            color: var(--text-light);
-        }
-
-        .pricing-features {
-            list-style: none;
-            padding: 1.6rem 0 1rem;
-            text-align: left;
-        }
-
-        .pricing-features li {
-            padding: 0.65rem 0;
-            padding-left: 1.7rem;
+        .pricing-card.free {
+            border-color: rgba(255, 158, 69, 0.55);
             position: relative;
-            color: var(--text-light);
-            line-height: 1.6;
-            word-break: break-word;
         }
 
-        .pricing-features li::before {
+        .pricing-card.free::before {
+            content: 'まずは無料';
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 0.72rem;
+            background: rgba(255, 158, 69, 0.18);
+            color: #8a4a10;
+            padding: 0.25rem 0.6rem;
+            border-radius: 8px;
+            letter-spacing: 0.03em;
+            font-weight: 700;
+        }
+
+        .plan-name {
+            font-size: 1.35rem;
+            color: var(--ocean);
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.4rem;
+            color: var(--navy);
+            margin-bottom: 0.6rem;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--muted);
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-weight: 500;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin: 0.85rem 0 1.2rem;
+        }
+
+        .pricing-card li {
+            position: relative;
+            padding-left: 1.3rem;
+            margin-bottom: 0.45rem;
+            color: var(--muted);
+            font-size: 0.94rem;
+        }
+
+        .pricing-card li::before {
             content: '✓';
             position: absolute;
             left: 0;
-            color: var(--secondary-color);
+            color: var(--aqua);
             font-weight: 700;
-            font-size: 1.1rem;
         }
 
-        /* CTA Section */
+        .pricing-note {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
         .cta-section {
-            background: linear-gradient(135deg, #2563eb, #0891b2);
-            color: white;
+            background:
+                radial-gradient(circle at 18% 16%, rgba(124, 229, 240, 0.35), transparent 42%),
+                linear-gradient(145deg, #1f7fc7 0%, #1a74ba 52%, #22bfdc 100%);
+            border-radius: 16px;
+            padding: 3rem 1.5rem;
+            color: #fff;
             text-align: center;
-            padding: 90px 2rem;
-            margin-top: 80px;
-            border-radius: 28px;
-            box-shadow: 0 22px 60px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 20px 40px rgba(26, 116, 186, 0.3);
+            margin-top: 0.8rem;
         }
 
         .cta-section h2 {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 2.7rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            letter-spacing: 0.01em;
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 0.75rem;
         }
 
         .cta-section p {
-            font-size: 1.15rem;
-            margin-bottom: 2rem;
-            opacity: 0.94;
-            line-height: 1.7;
+            max-width: 740px;
+            margin: 0 auto 1.6rem;
+            opacity: 0.9;
         }
 
-        /* Footer */
+        .store-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.8rem;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .store-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            padding: 0.9rem 1rem;
+            border: 1px solid transparent;
+            transition: transform 0.2s ease;
+        }
+
+        .store-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .store-button.apple {
+            background: #ffffff;
+            color: #0c1830;
+            border-color: rgba(12, 24, 48, 0.18);
+        }
+
+        .store-button.google {
+            background: #fff;
+            color: #1b3f68;
+            border-color: rgba(27, 63, 104, 0.22);
+        }
+
         footer {
-            background: rgba(30, 58, 95, 0.95);
-            color: white;
-            padding: 3rem 2rem 1.5rem;
-            margin-top: 90px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
+            margin-top: 72px;
+            background: #0a1f3f;
+            color: #d4e5f9;
+            padding: 2.7rem 1.4rem 1.35rem;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: var(--container);
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2.4rem;
-            margin-bottom: 2rem;
+            grid-template-columns: 1.1fr 0.9fr 0.9fr 0.9fr;
+            gap: 1.2rem;
         }
 
         .footer-section h3 {
-            margin-bottom: 0.85rem;
-            color: var(--secondary-color);
+            color: #fff;
+            margin-bottom: 0.65rem;
+            font-size: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #b8d1ee;
+            text-decoration: none;
+            font-size: 0.9rem;
+            line-height: 1.7;
         }
 
         .footer-links {
             list-style: none;
         }
 
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.76);
-            text-decoration: none;
-            transition: color 0.25s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        .footer-section a[href^="mailto"] {
-            color: rgba(255, 255, 255, 0.76);
-            text-decoration: none;
-            transition: color 0.25s ease;
-        }
-
-        .footer-section a[href^="mailto"]:hover {
-            color: var(--secondary-color);
-        }
-
         .footer-bottom {
+            max-width: var(--container);
+            margin: 1.4rem auto 0;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(184, 209, 238, 0.2);
             text-align: center;
-            padding-top: 1.6rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            color: rgba(255, 255, 255, 0.6);
+            color: #9bb7d8;
+            font-size: 0.85rem;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.58s ease, transform 0.58s ease;
         }
 
-        /* Mobile Menu */
-        .mobile-menu-button {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.6rem;
-            cursor: pointer;
-            color: var(--text-color);
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Responsive Design */
-        @media (max-width: 900px) {
-            .hero h1 {
-                font-size: 3rem;
+        @media (max-width: 980px) {
+            .hero-metrics,
+            .flow-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
-            .hero p {
-                font-size: 1.15rem;
+
+            .value-grid,
+            .pricing-grid,
+            .capability-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .store-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                gap: 1.6rem;
             }
         }
 
         @media (max-width: 768px) {
-            body {
-                line-height: 1.65;
+            nav {
+                padding: 0.85rem 1rem;
             }
 
             .mobile-menu-button {
@@ -623,277 +700,320 @@
             .nav-links {
                 display: none;
                 position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(240, 247, 255, 0.98);
+                top: calc(100% + 0.3rem);
+                left: 1rem;
+                right: 1rem;
                 flex-direction: column;
-                padding: 1rem 1.5rem 1.5rem;
-                box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12);
-                border-bottom-left-radius: 18px;
-                border-bottom-right-radius: 18px;
+                align-items: stretch;
+                background: #fff;
+                border: 1px solid var(--line);
+                border-radius: 14px;
+                box-shadow: 0 20px 40px rgba(16, 36, 65, 0.18);
+                padding: 0.85rem;
+                gap: 0.2rem;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 0.6rem 0.5rem;
             }
 
             .nav-links.active {
                 display: flex;
-                gap: 1rem;
             }
 
             .hero {
-                padding: 90px 1.5rem 80px;
-                border-radius: 0 0 28px 28px;
+                padding-top: 72px;
             }
 
-            .hero h1 {
-                font-size: 2.4rem;
-                line-height: 1.25;
+            .hero-panel {
+                padding: 2rem 1.2rem;
+                border-radius: 14px;
             }
 
-            .hero p {
-                font-size: 1.05rem;
+            .button-primary,
+            .button-secondary {
+                width: 100%;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-metrics,
+            .flow-grid {
+                grid-template-columns: 1fr;
             }
 
             section {
-                padding: 70px 1.4rem;
-            }
-
-            .section-title {
-                font-size: 2.1rem;
-            }
-
-            .section-subtitle {
-                font-size: 1rem;
-            }
-
-            .button-primary, .button-secondary {
-                width: 100%;
-                max-width: 320px;
-            }
-
-            .screenshot-placeholder {
-                height: 260px;
+                padding: 62px 1rem;
             }
 
             .cta-section {
-                padding: 70px 1.5rem;
-                margin-top: 60px;
+                border-radius: 14px;
+                padding: 2.2rem 1rem;
             }
 
-            .cta-section h2 {
-                font-size: 2.1rem;
+            .store-button {
+                width: 100%;
             }
-        }
-
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
         }
         </style>
     </head>
     <body>
-        <!-- Header & Navigation -->
-        <header>
+        <div class="grain"></div>
+        <header id="header">
             <nav>
-                <div class="logo">🏊 スマスイ</div>
-                <button class="mobile-menu-button" onclick="toggleMenu()">☰</button>
+                <a href="#top" class="logo">🏊 スマスイ</a>
+                <button class="mobile-menu-button" onclick="toggleMenu()" aria-label="メニュー">☰</button>
                 <ul class="nav-links" id="navLinks">
                     <li>
-                        <a href="#features">特徴</a>
+                        <a href="#value">選ばれる理由</a>
                     </li>
                     <li>
-                        <a href="#screens">機能</a>
+                        <a href="#capabilities">機能</a>
+                    </li>
+                    <li>
+                        <a href="#flow">活用フロー</a>
                     </li>
                     <li>
                         <a href="#pricing">料金</a>
                     </li>
                     <li>
-                        <a href="#download" class="cta-button">今すぐ始める</a>
+                        <a href="#download" class="cta-button">まずは無料で始める</a>
                     </li>
                 </ul>
             </nav>
         </header>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>
-                    水泳を速くする
-                    <br>
-                    練習管理アプリ
-                </h1>
+        <main id="top">
+            <section class="hero">
+                <div class="hero-panel reveal">
+                    <div class="hero-content">
+                        <span class="eyebrow">自己ベストを目指す人へ</span>
+                        <h1>
+                            水泳と筋トレを、1つに。
+                            <br>
+                            レース記録までつながる練習管理アプリ。
+                        </h1>
+                        <p class="hero-copy">
+                            スマスイは、日々の練習を記録するだけでなく、
+                            レース結果の管理・取り込み、チームでの共有、AIによる提案と振り返りまで対応。
+                            記録を積み上げて、自己ベスト更新につなげるためのアプリです。
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#download" class="button-primary">まずは無料で使い始める</a>
+                            <a href="#capabilities" class="button-secondary">機能を確認する</a>
+                        </div>
+                        <div class="hero-metrics">
+                            <div class="metric-card">
+                                <span class="label">
+                                    <span class="metric-icon">🏊</span>日々の記録</span>
+                                <span class="value">水泳 + 筋トレを一元管理</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="label">
+                                    <span class="metric-icon">🏁</span>レース管理</span>
+                                <span class="value">記録の管理・外部取り込み</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="label">
+                                    <span class="metric-icon">👥</span>チーム運用</span>
+                                <span class="value">共有・ランキング・大会管理</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="label">
+                                    <span class="metric-icon">🤖</span>AIサポート</span>
+                                <span class="value">提案とフィードバック対応</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="value">
+                <div class="section-header reveal">
+                    <p class="section-kicker">魅力</p>
+                    <h2 class="section-title">スマスイの魅力は、この4つ</h2>
+                    <p class="section-subtitle">自己ベスト更新を目指すために必要な機能を、シンプルに使いやすくまとめています。</p>
+                </div>
+                <div class="value-grid">
+                    <article class="value-card reveal">
+                        <span class="icon">🏊</span>
+                        <h3>水泳と筋トレを一緒に管理</h3>
+                        <p>練習メニュー、負荷、コメント、振り返りをまとめて記録。日々の積み上げが途切れません。</p>
+                    </article>
+                    <article class="value-card reveal">
+                        <span class="icon">🏁</span>
+                        <h3>レース記録の管理・取り込みが簡単</h3>
+                        <p>目標と結果をつなげて管理。公式記録やマスターズ系データの取り込みにも対応しています。</p>
+                    </article>
+                    <article class="value-card reveal">
+                        <span class="icon">👥</span>
+                        <h3>チームでの練習管理がしやすい</h3>
+                        <p>チーム共有、ランキング確認、大会運用まで1つで対応。個人練習とチーム活動を両立できます。</p>
+                    </article>
+                    <article class="value-card reveal">
+                        <span class="icon">🤖</span>
+                        <h3>AIが提案とフィードバックを支援</h3>
+                        <p>目標に合わせた練習提案と、実施メニューへのフィードバックで、次の1本を改善しやすくなります。</p>
+                    </article>
+                </div>
+            </section>
+            <section id="capabilities" class="capability-section">
+                <div class="section-header reveal">
+                    <p class="section-kicker">機能</p>
+                    <h2 class="section-title">主な機能一覧</h2>
+                    <p class="section-subtitle">「練習 → レース → 振り返り」をつなぐための機能をカテゴリ別で確認できます。</p>
+                </div>
+                <div class="capability-grid">
+                    <article class="capability-card reveal">
+                        <h3>🏊 練習記録（Practice）</h3>
+                        <ul>
+                            <li>水泳/筋トレの詳細入力、公開範囲管理、画像添付</li>
+                            <li>テンプレート展開・保存、距離/負荷の集計</li>
+                            <li>月間サマリー画像・テキスト共有</li>
+                        </ul>
+                    </article>
+                    <article class="capability-card reveal">
+                        <h3>🤖 AIコーチ（プレミアム）</h3>
+                        <ul>
+                            <li>目標と距離レンジから練習提案を自動生成</li>
+                            <li>実施済み練習への改善フィードバックを保存</li>
+                            <li>自由記述メニューの構造化に対応</li>
+                        </ul>
+                    </article>
+                    <article class="capability-card reveal">
+                        <h3>🏁 記録・分析（Record）</h3>
+                        <ul>
+                            <li>ベスト/全結果切替、高度フィルタ、推移グラフ</li>
+                            <li>ポイント計算（タイム⇄ポイント双方向）</li>
+                            <li>能力レーダー、目標管理、大会結果ビュー</li>
+                        </ul>
+                    </article>
+                    <article class="capability-card reveal">
+                        <h3>📥 外部データ取り込み</h3>
+                        <ul>
+                            <li>result.swim.or.jp から候補検索して一括取り込み</li>
+                            <li>マスターズ系データ（ジャンボウ）に対応</li>
+                            <li>重複時の置換/スキップ解決フローを搭載</li>
+                        </ul>
+                    </article>
+                    <article class="capability-card reveal">
+                        <h3>👥 チーム・大会運用（Team）</h3>
+                        <ul>
+                            <li>公開/承認制チーム、参加リンク、申請管理</li>
+                            <li>大会作成、目標/結果入力依頼リンク配布</li>
+                            <li>集金管理、リレー記録、メモリー写真共有</li>
+                        </ul>
+                    </article>
+                    <article class="capability-card reveal">
+                        <h3>🔔 コミュニティ・通知</h3>
+                        <ul>
+                            <li>全体/チームタイムライン、いいね、コメント返信</li>
+                            <li>通知センター（フィルタ・未読/既読管理）</li>
+                            <li>可視性に応じた場所情報マスクに対応</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+            <section id="flow">
+                <div class="section-header reveal">
+                    <p class="section-kicker">ステップ</p>
+                    <h2 class="section-title">自己ベストにつながる4ステップ</h2>
+                    <p class="section-subtitle">日々の練習とレース結果を、無理なくつなげて継続できます。</p>
+                </div>
+                <div class="flow-grid">
+                    <article class="flow-card reveal">
+                        <span class="flow-step">1</span>
+                        <h3>練習を記録</h3>
+                        <p>水泳・筋トレを当日中に入力。テンプレートや構造化で記録負荷を最小化。</p>
+                    </article>
+                    <article class="flow-card reveal">
+                        <span class="flow-step">2</span>
+                        <h3>AIとデータで振り返る</h3>
+                        <p>負荷推移、ポイント、能力レーダー、AIフィードバックで改善ポイントを把握。</p>
+                    </article>
+                    <article class="flow-card reveal">
+                        <span class="flow-step">3</span>
+                        <h3>チームで共有・運用</h3>
+                        <p>タイムライン共有、ランキング確認、大会入力依頼リンクで運営を効率化。</p>
+                    </article>
+                    <article class="flow-card reveal">
+                        <span class="flow-step">4</span>
+                        <h3>大会結果を統合</h3>
+                        <p>外部記録取り込みと結果管理で次の目標設定へ。練習と本番がつながります。</p>
+                    </article>
+                </div>
+            </section>
+            <section id="pricing">
+                <div class="section-header reveal">
+                    <p class="section-kicker">料金</p>
+                    <h2 class="section-title">使い方に合わせて選べる2プラン</h2>
+                    <p class="section-subtitle">まずは無料でスタート。必要に応じてプレミアムへ切り替えできます。</p>
+                </div>
+                <div class="pricing-grid">
+                    <article class="pricing-card free reveal">
+                        <h3 class="plan-name">無料プラン</h3>
+                        <p class="plan-price">
+                            ¥0
+                            <span>/ 月</span>
+                        </p>
+                        <ul>
+                            <li>練習記録（競泳/フィン/筋トレ）</li>
+                            <li>チーム参加（1チームまで）</li>
+                            <li>テンプレート登録（3件まで）</li>
+                            <li>ベストタイム・目標・ポイント管理</li>
+                            <li>広告表示あり</li>
+                        </ul>
+                        <a href="#download" class="button-primary">無料で始める</a>
+                    </article>
+                    <article class="pricing-card featured reveal">
+                        <h3 class="plan-name">プレミアムプラン</h3>
+                        <p class="plan-price">
+                            ¥480
+                            <span>/ 月</span>
+                        </p>
+                        <ul>
+                            <li>無料プランの全機能</li>
+                            <li>AIコーチ（提案/構造化/フィードバック）</li>
+                            <li>参加チーム数・テンプレート数の制限解除</li>
+                            <li>ランキング/分析詳細の拡張表示</li>
+                            <li>広告非表示 + レース動画機能（β）</li>
+                        </ul>
+                        <a href="#download" class="button-primary">プレミアムを試す</a>
+                    </article>
+                </div>
+                <p class="pricing-note reveal">※ サブスクリプションは7日間トライアル・復元導線に対応しています。</p>
+            </section>
+            <section id="download" class="cta-section reveal">
+                <h2>まずは無料で、今日の練習から。</h2>
                 <p>
-                    水泳・筋トレを一元管理。
-                    <br>
-                    速くなりたいあなたの成長を、見える化します。
+                    水泳と筋トレの記録を残し、レース結果とつなげる。
+                    スマスイで、自己ベスト更新のための習慣を始めましょう。
                 </p>
-                <div class="hero-buttons">
-                    <a href="#download" class="button-primary">無料で始める</a>
-                    <a href="#features" class="button-secondary">詳しく見る</a>
+                <div class="store-buttons">
+                    <a href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%82%B9%E3%82%A4/id6756019486" class="store-button apple">App Storeでダウンロード</a>
+                    <a href="https://play.google.com/store/apps/details?id=jp.smartswim.app" class="store-button google">Google Playでダウンロード</a>
                 </div>
-            </div>
-        </section>
-        <!-- Problem Section -->
-        <section class="problem">
-            <h2 class="section-title">こんなお悩みありませんか?</h2>
-            <p class="section-subtitle">既存の練習記録ツールには、多くの課題があります</p>
-            <div class="problem-cards">
-                <div class="problem-card">
-                    <div class="problem-icon">⏱️</div>
-                    <h3>入力の手間が大きい</h3>
-                    <p>毎回メニューを手入力し、合計距離を自分で計算。集中力を要する作業で、記録自体がストレスに。</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">📝</div>
-                    <h3>記録方法が統一されていない</h3>
-                    <p>人によってメニューの書き方が違い読みづらい。同じ練習内容を毎回0から入力する手間が発生。</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">💪</div>
-                    <h3>筋トレを管理できない</h3>
-                    <p>水泳以外の練習記録を連動できず、全体の練習状況を把握しづらい。</p>
-                </div>
-            </div>
-        </section>
-        <!-- Features Section -->
-        <section id="features">
-            <h2 class="section-title">スマスイなら全て解決</h2>
-            <p class="section-subtitle">3つの柱で、練習管理を革新します</p>
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">✨</div>
-                    <h3>記録のしやすさ</h3>
-                    <ul class="feature-list">
-                        <li>水泳と筋トレの両方を簡単入力</li>
-                        <li>
-                            テンプレート登録で
-                            <br>
-                            ワンタップ呼び出し
-                        </li>
-                        <li>最大重量やセット数を自動記録</li>
-                        <li>
-                            成長を可視化して
-                            <br>
-                            モチベーション向上
-                        </li>
-                    </ul>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">👥</div>
-                    <h3>チーム・SNS連携</h3>
-                    <ul class="feature-list">
-                        <li>練習データをSNSで共有可能</li>
-                        <li>チーム内での練習共有</li>
-                        <li>全体の練習量・貢献度を一覧化</li>
-                        <li>
-                            チーム全体の
-                            <br>
-                            モチベーション向上に貢献
-                        </li>
-                    </ul>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">📊</div>
-                    <h3>データ分析と可視化</h3>
-                    <ul class="feature-list">
-                        <li>種目毎のワールドポイントを確認可能</li>
-                        <li>レーダーチャートで能力可視化</li>
-                        <li>練習量を見えるか</li>
-                        <li>
-                            練習記録から大会の予測タイムを算出
-                            <br>
-                            AI分析※開発中
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        <!-- Screenshots Section -->
-        <section id="screens" class="screenshots">
-            <h2 class="section-title">主な機能</h2>
-            <p class="section-subtitle">シンプルで使いやすいインターフェース</p>
-            <div class="screenshot-grid">
-                <div class="screenshot-item">
-                    <div class="screenshot-placeholder">📝</div>
-                    <h4>練習記録</h4>
-                    <p>水泳と筋トレを簡単に記録。週・月・年単位で確認可能</p>
-                </div>
-                <div class="screenshot-item">
-                    <div class="screenshot-placeholder">👥</div>
-                    <h4>チーム管理</h4>
-                    <p>チームの月間練習距離と順位を確認。複数チームへの参加も可能</p>
-                </div>
-                <div class="screenshot-item">
-                    <div class="screenshot-placeholder">🏆</div>
-                    <h4>ベストタイム</h4>
-                    <p>種目別・距離別のベストタイムを管理。成長を実感できます</p>
-                </div>
-                <div class="screenshot-item">
-                    <div class="screenshot-placeholder">⚙️</div>
-                    <h4>個人設定</h4>
-                    <p>プロフィール管理やアカウント設定をまとめて管理</p>
-                </div>
-            </div>
-        </section>
-        <!-- Pricing Section -->
-        <section id="pricing">
-            <h2 class="section-title">料金プラン</h2>
-            <p class="section-subtitle">あなたに合ったプランをお選びください</p>
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <h3>無料プラン</h3>
-                    <div class="price">
-                        ¥0
-                        <span>/月</span>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>基本的な練習記録機能</li>
-                        <li>水泳・筋トレの記録</li>
-                        <li>チーム機能</li>
-                        <li>ベストタイム管理</li>
-                        <li>広告表示あり</li>
-                    </ul>
-                    <a href="#download" class="button-primary">無料で始める</a>
-                </div>
-                <div class="pricing-card featured">
-                    <h3>プレミアムプラン</h3>
-                    <div class="price">
-                        ¥480
-                        <span>/月</span>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>無料プランの全機能</li>
-                        <li>広告非表示</li>
-                        <li>参加できるチームを2つ以上にする</li>
-                        <li>テンプレートを4個以上登録できるようにする</li>
-                        <li>チーム内ランキングの詳細確認機能</li>
-                    </ul>
-                    <a href="#download" class="button-primary">プレミアムを試す</a>
-                </div>
-            </div>
-        </section>
-        <!-- CTA Section -->
-        <section id="download" class="cta-section">
-            <h2>今すぐスマスイを始めよう</h2>
-            <p>水泳を速くするための第一歩を、今日から。</p>
-            <div class="hero-buttons">
-                <a href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%82%B9%E3%82%A4/id6756019486" class="button-primary">App Storeでダウンロード</a>
-                <a href="https://play.google.com/store/apps/details?id=jp.smartswim.app" class="button-primary">Google Playでダウンロード</a>
-            </div>
-        </section>
-        <!-- Footer -->
+            </section>
+        </main>
         <footer>
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>🏊 スマスイ</h3>
-                    <p>水泳を速くなりたい人のための練習管理アプリ。水泳・筋トレを一元管理。</p>
+                    <p>競泳・フィンスイミング・筋トレを統合し、個人の成長とチーム運用をつなぐ競技者向けプラットフォーム。</p>
                 </div>
                 <div class="footer-section">
                     <h3>プロダクト</h3>
                     <ul class="footer-links">
                         <li>
-                            <a href="#features">特徴</a>
+                            <a href="#value">選ばれる理由</a>
                         </li>
                         <li>
-                            <a href="#screens">機能</a>
+                            <a href="#capabilities">機能</a>
                         </li>
                         <li>
                             <a href="#pricing">料金</a>
@@ -901,7 +1021,7 @@
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>お問い合わせ</h3>
+                    <h3>サポート</h3>
                     <p>
                         <a href="mailto:contact@smaswi.com">contact@smaswi.com</a>
                     </p>
@@ -918,71 +1038,49 @@
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 スマスイ. All rights reserved.</p>
-            </div>
+            <div class="footer-bottom">&copy; 2026 スマスイ. All rights reserved.</div>
         </footer>
         <script>
-        // Mobile menu toggle
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
 
-        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+            anchor.addEventListener('click', event => {
+                event.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    document.getElementById('navLinks').classList.remove('active');
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
+                document.getElementById('navLinks').classList.remove('active');
             });
         });
 
-        // Header scroll effect
-        let lastScroll = 0;
-        const header = document.querySelector('header');
-
+        const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll <= 0) {
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            if (window.scrollY > 12) {
+                header.classList.add('scrolled');
             } else {
-                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.15)';
+                header.classList.remove('scrolled');
             }
-            
-            lastScroll = currentScroll;
         });
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        const revealTargets = document.querySelectorAll('.reveal');
+        revealTargets.forEach((el, index) => {
+            el.style.transitionDelay = `${Math.min(index * 40, 320)}ms`;
+        });
 
-        const observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
 
-        // Observe all cards and features
-        document.querySelectorAll('.problem-card, .feature, .screenshot-item, .pricing-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
+        revealTargets.forEach(el => observer.observe(el));
         </script>
     </body>
 </html>
