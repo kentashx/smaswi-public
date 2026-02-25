@@ -3,3 +3,4 @@
 .lhignore
 .lh/*
 features/*
+features_ignore/*
